@@ -15,12 +15,9 @@ inputs:
   unitag_dws: File
  
 outputs:
-  response:
+  unitag_dws:
     outputSource:
-      - join1/response
-      - join2/response 
-      - join3/response 
-  
+      - merge/unitag_dws
     type: Any
 
 steps:
@@ -130,11 +127,11 @@ steps:
       class: CommandLineTool
       inputs:
         response:
-          type: File
+          type: Any
           inputBinding:
             position: 1
         unitag_dws:
-          type: File
+          type: Any
       baseCommand: join
       arguments:
          - "-n"
