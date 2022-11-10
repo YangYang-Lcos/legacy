@@ -13,11 +13,11 @@ inputs:
 
 outputs:
   response:
-    outputSource: join/response
+    outputSource: response
     type: File
 
 steps:
-  join:
+  join1:
     run:
       class: CommandLineTool
       inputs:
@@ -39,7 +39,7 @@ steps:
       aaa_table: aaa_table
       bbb_table: bbb_table
     out: [response]
-  join:
+  join2:
     run:
       class: CommandLineTool
       inputs:
