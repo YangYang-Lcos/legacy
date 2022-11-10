@@ -50,7 +50,7 @@ steps:
         source: rule_table
         valueFrom: ${self.basename}
     out: [response]
-  join3:
+  join2:
     run:
       class: CommandLineTool
       inputs:
