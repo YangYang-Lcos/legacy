@@ -19,6 +19,13 @@ outputs:
     outputSource:
       - merge/unitag_dws
     type: Any
+  response:
+    outputSource:
+      - join1/response
+      - join2/response 
+      - join3/response 
+  
+    type: Any
 
 steps:
   join1:
