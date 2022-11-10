@@ -31,7 +31,7 @@ steps:
           default: "Hello World"
           inputBinding:
             position: 1
-        name1:
+        name2:
           type: string
       baseCommand: op
       arguments:
