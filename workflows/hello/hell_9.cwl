@@ -12,6 +12,7 @@ inputs:
   rule_table: File
   train_tickets_off_time: File
   civil_aviation_book_off_time: File
+  unitag_dws: File
  
 outputs:
   response:
@@ -34,7 +35,7 @@ steps:
             position: 1
         areacode2:
           type: string
-      baseCommand: instersect
+      baseCommand: join
       arguments:
          - "-n"
          - "-e"
@@ -85,7 +86,7 @@ steps:
             position: 1
         civil_aviation_book_off_time:
           type: File
-      baseCommand: instersect
+      baseCommand: join
       arguments:
          - "-n"
          - "-e"
@@ -121,5 +122,32 @@ steps:
         source: rule_table
         valueFrom: ${self.basename}
     out: [response]
-      
     
+  
+      
+  merge:
+     run:
+      class: CommandLineTool
+      inputs:
+        response:
+          type: File
+          inputBinding:
+            position: 1
+        unitag_dws:
+          type: File
+      baseCommand: join
+      arguments:
+         - "-n"
+         - "-e"
+      outputs:
+        unitag_dws:
+          type: Any
+    in:
+      response: 
+        source:
+          - join1/response
+          - join2/response 
+          - join3/response 
+      unitag_dws: 
+        source: unitag_dws    
+   out: [unitag_dws]
