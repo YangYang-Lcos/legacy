@@ -30,5 +30,7 @@ steps:
       outputs:
         response:
           type: stdout
-    in: []
-    out: [response]
+   in:
+      tarfile: tarball
+      extractfile: name_of_file_to_extract
+    out: [extracted_file]
