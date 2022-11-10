@@ -17,7 +17,7 @@ outputs:
       - join1/response
       - join2/response 
   
-    type: Directory
+    type: Any
 
 steps:
   join1:
@@ -37,10 +37,10 @@ steps:
       arguments:
          - "-n"
          - "-e"
-      stdout: response.txt
+    
       outputs:
         response:
-          type: stdout
+          type:Any
     in:
       name:
         source: aaa_table
@@ -65,10 +65,9 @@ steps:
       arguments:
          - "-n"
          - "-e"
-      stdout: response.txt
       outputs:
         response:
-          type: stdout
+          type:Any
     in:
       name:
         source: aaa_table
