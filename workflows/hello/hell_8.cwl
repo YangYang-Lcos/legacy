@@ -7,15 +7,18 @@ label: "Hello World"
 doc: "Outputs a message using echo"
 
 inputs:
-  aaa_table: File
-  bbb_table: File
-  ccc_table: File
-
+  train_tickets_real_time: File
+  civil_aviation_book_real_time: File
+  rule_table: File
+  train_tickets_off_time: File
+  civil_aviation_book_off_time: File
+ 
 outputs:
   response:
     outputSource:
       - join1/response
       - join2/response 
+      - join3/response 
   
     type: Any
 
@@ -26,9 +29,7 @@ steps:
       class: CommandLineTool
       inputs:
         name:
-          type: string
-          doc: "The message to print"
-          default: "Hello World"
+          type: string       
           inputBinding:
             position: 1
         name2:
@@ -42,21 +43,19 @@ steps:
         response:
           type: Any
     in:
-      name:
-        source: aaa_table
+      areacode1:
+        source: train_tickets_real_time
         valueFrom: ${self.basename}
-      name2:
-        source: bbb_table
+      areacode2:
+        source: rule_table
         valueFrom: ${self.basename}
     out: [response]
-  join2:
+  join3:
     run:
       class: CommandLineTool
       inputs:
         name:
           type: string
-          doc: "The message to print"
-          default: "Hello World"
           inputBinding:
             position: 1
         name2:
@@ -69,12 +68,51 @@ steps:
         response:
           type: Any
     in:
-      name:
-        source: aaa_table
+      areacode1:
+        source: civil_aviation_book_real_time
         valueFrom: ${self.basename}
-      name2:
-        source: ccc_table
+      areacode2:
+        source: rule_table
         valueFrom: ${self.basename}
     out: [response]
-    
+  union1:
+    run:
+      class: CommandLineTool
+      inputs:
+        train_tickets_off_time:
+          type: File
+          inputBinding:
+            position: 1
+        civil_aviation_book_off_time:
+          type: File
+      baseCommand: instersect
+      arguments:
+         - "-n"
+         - "-e"
+      outputs:
+        union_res:
+          type: Any
+    in:
+      train_tickets_off_time: train_tickets_off_time
+      civil_aviation_book_off_time: civil_aviation_book_off_time
+    out: [union_res] 
+  join3:
+    run:
+      class: CommandLineTool
+      inputs:
+       
+      baseCommand: union
+      arguments:
+         - "-n"
+         - "-e"
+      outputs:
+        response:
+          type: Any
+    in:
+      areacode1: union1/union_res
+      areacode2:
+        source: rule_table
+        valueFrom: ${self.basename}
+    out: [response]
+      
     
