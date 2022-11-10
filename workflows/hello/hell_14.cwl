@@ -12,12 +12,10 @@ inputs:
   rule_table: File
   train_tickets_off_time: File
   civil_aviation_book_off_time: File
-  unitag_dws: File
- 
+  
 outputs:
   unitag_dws:
-    outputSource:
-      - merge/unitag_dws
+    outputSource: merge/unitag_dws
     type: Any
   response:
     outputSource:
@@ -150,6 +148,5 @@ steps:
           - join1/response
           - join2/response 
           - join3/response 
-      unitag_dws: 
-        source: unitag_dws    
+   
    out: [unitag_dws]
