@@ -47,7 +47,7 @@ steps:
         valueFrom: ${self.basename}
       name2:
         source: bbb_table
-        valuFrom: ${self.basename}
+        valueFrom: ${self.basename}
     out: [response]
   join2:
     run:
