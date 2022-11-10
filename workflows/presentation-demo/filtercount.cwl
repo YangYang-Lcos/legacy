@@ -1,8 +1,6 @@
 #!/usr/bin/env cwl-runner
 class: Workflow
 cwlVersion: v1.0
-label: "近7天高危地区来宁人员"
-doc: "近7天高危地区来宁人员"
 requirements:
   ScatterFeatureRequirement: {}
   DockerRequirement: 
