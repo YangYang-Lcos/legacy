@@ -9,7 +9,7 @@ doc: "Outputs a message using echo"
 inputs:
   aaa_table: File
   bbb_table: File
- 
+  ccc_table: File
 
 outputs:
   response:
