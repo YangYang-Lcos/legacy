@@ -123,8 +123,6 @@ steps:
         valueFrom: ${self.basename}
     out: [response]
     
-  
-      
   merge:
      run:
       class: CommandLineTool
