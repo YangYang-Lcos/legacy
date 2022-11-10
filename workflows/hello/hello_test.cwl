@@ -2,8 +2,8 @@
 cwlVersion: v1.0
 class: Workflow
 inputs:
-  tarball: 'qqqqq'
-  name_of_file_to_extract: '1111111'
+  aaa_table: File
+  bb_tale: File
 
 outputs:
   compiled_class:
