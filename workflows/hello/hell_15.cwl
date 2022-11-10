@@ -12,7 +12,6 @@ inputs:
   rule_table: File
   train_tickets_off_time: File
   civil_aviation_book_off_time: File
-  
 outputs:
   unitag_dws:
     outputSource: merge/unitag_dws
@@ -22,12 +21,10 @@ outputs:
       - join1/response
       - join2/response 
       - join3/response 
-  
     type: Any
   unitag_result:
     outputSource: storage/unitag_result
     type: Any
-
 steps:
   join1:
     label: "关联操作"
@@ -42,9 +39,6 @@ steps:
           type: string
       baseCommand: join
       arguments:
-         - "-n"
-         - "-e"
-    
       outputs:
         response:
           type: Any
@@ -67,9 +61,6 @@ steps:
         areacode2:
           type: string
       baseCommand: instersect
-      arguments:
-         - "-n"
-         - "-e"
       outputs:
         response:
           type: Any
@@ -92,9 +83,6 @@ steps:
         civil_aviation_book_off_time:
           type: File
       baseCommand: join
-      arguments:
-         - "-n"
-         - "-e"
       outputs:
         union_res:
           type: Any
@@ -113,9 +101,6 @@ steps:
         areacode2:
           type: string
       baseCommand: join
-      arguments:
-         - "-n"
-         - "-e"
       outputs:
         response:
           type: Any
@@ -126,8 +111,7 @@ steps:
       areacode2:
         source: rule_table
         valueFrom: ${self.basename}
-    out: [response]
-          
+    out: [response]        
   merge:
    run:
       class: CommandLineTool
@@ -139,9 +123,6 @@ steps:
         unitag_dws:
           type: Any
       baseCommand: join
-      arguments:
-         - "-n"
-         - "-e"
       outputs:
         unitag_dws:
           type: Any
@@ -151,26 +132,19 @@ steps:
           - join1/response
           - join2/response 
           - join3/response 
-   
-   out: [unitag_dws]
-   
+   out: [unitag_dws]  
   storage:
     run:
       class: CommandLineTool
-      inputs:
-       
+      inputs:      
         unitag_dws:
           type: Any
-      baseCommand: join
-      arguments:
-         - "-n"
-         - "-e"
+      baseCommand: join    
       outputs:
         unitag_result:
           type: Any
     in:
       unitag_dws: 
         source:
-          - merge/unitag_dws
-        
+          - merge/unitag_dws       
     out: [unitag_result]
