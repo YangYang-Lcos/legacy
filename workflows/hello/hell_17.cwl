@@ -16,11 +16,11 @@ outputs:
   unitag_dws:
     outputSource: merge/unitag_dws
     type: Any
-  response:
+  unitag_dwd:
     outputSource:
-      - join1/response
-      - join2/response 
-      - join3/response 
+      - join1/unitag_dwd
+      - join2/unitag_dwd 
+      - join3/unitag_dwd 
     type: Any
   unitag_result:
     outputSource: storage/unitag_result
@@ -40,7 +40,7 @@ steps:
       baseCommand: join
       arguments:
       outputs:
-        response:
+        unitag_dwd:
           type: Any
     in:
       areacode1:
@@ -49,7 +49,7 @@ steps:
       areacode2:
         source: rule_table
         valueFrom: ${self.basename}
-    out: [response]
+    out: [unitag_dwd]
   join2:
     run:
       class: CommandLineTool
@@ -62,7 +62,7 @@ steps:
           type: string
       baseCommand: instersect
       outputs:
-        response:
+        unitag_dwd:
           type: Any
     in:
       areacode1:
@@ -71,7 +71,7 @@ steps:
       areacode2:
         source: rule_table
         valueFrom: ${self.basename}
-    out: [response]
+    out: [unitag_dwd]
   union1:
     run:
       class: CommandLineTool
@@ -102,7 +102,7 @@ steps:
           type: string
       baseCommand: join
       outputs:
-        response:
+        unitag_dwd:
           type: Any
     in:
       areacode1: 
@@ -111,12 +111,12 @@ steps:
       areacode2:
         source: rule_table
         valueFrom: ${self.basename}
-    out: [response]        
+    out: [unitag_dwd]        
   merge:
    run:
       class: CommandLineTool
       inputs:
-        response:
+        unitag_dwd:
           type: Any
           inputBinding:
             position: 1
@@ -127,11 +127,11 @@ steps:
         unitag_dws:
           type: Any
    in:
-      response: 
+      unitag_dwd: 
         source:
-          - join1/response
-          - join2/response 
-          - join3/response 
+          - join1/unitag_dwd
+          - join2/unitag_dwd 
+          - join3/unitag_dwd 
    out: [unitag_dws]  
   storage:
     run:
