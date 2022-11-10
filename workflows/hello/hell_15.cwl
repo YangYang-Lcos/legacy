@@ -24,6 +24,8 @@ outputs:
       - join3/response 
   
     type: Any
+  unitag_result:
+    outputSource: storage/unitag_result
 
 steps:
   join1:
@@ -129,7 +131,7 @@ steps:
    run:
       class: CommandLineTool
       inputs:
-        response1:
+        response:
           type: Any
           inputBinding:
             position: 1
@@ -143,10 +145,31 @@ steps:
         unitag_dws:
           type: Any
    in:
-      response1: 
+      response: 
         source:
           - join1/response
           - join2/response 
           - join3/response 
    
    out: [unitag_dws]
+   
+  storage:
+    run:
+      class: CommandLineTool
+      inputs:
+       
+        unitag_dws:
+          type: Any
+      baseCommand: join
+      arguments:
+         - "-n"
+         - "-e"
+      outputs:
+        unitag_result:
+          type: Any
+    in:
+      unitag_dws: 
+        source:
+          - merge/unitag_dws
+        
+    out: [unitag_result]
