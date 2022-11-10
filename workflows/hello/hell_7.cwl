@@ -16,8 +16,7 @@ outputs:
     outputSource:
       - join1/response
       - join2/response 
-    type: File
-
+   
 steps:
   join1:
     label: "关联操作"
