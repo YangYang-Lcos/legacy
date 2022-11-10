@@ -126,14 +126,12 @@ steps:
         source: rule_table
         valueFrom: ${self.basename}
     out: [response]
-    
-  
-      
+          
   merge:
    run:
       class: CommandLineTool
       inputs:
-        response:
+        response1:
           type: Any
           inputBinding:
             position: 1
@@ -147,7 +145,7 @@ steps:
         unitag_dws:
           type: Any
    in:
-      response: 
+      response1: 
         source:
           - join1/response
           - join2/response 
