@@ -28,11 +28,11 @@ steps:
     run:
       class: CommandLineTool
       inputs:
-        name:
-          type: string       
+        areacode1:
+          type: string
           inputBinding:
             position: 1
-        name2:
+        areacode2:
           type: string
       baseCommand: instersect
       arguments:
@@ -54,11 +54,11 @@ steps:
     run:
       class: CommandLineTool
       inputs:
-        name:
+        areacode1:
           type: string
           inputBinding:
             position: 1
-        name2:
+        areacode2:
           type: string
       baseCommand: instersect
       arguments:
@@ -100,8 +100,13 @@ steps:
     run:
       class: CommandLineTool
       inputs:
-       
-      baseCommand: union
+        areacode1:
+          type: string
+          inputBinding:
+            position: 1
+        areacode2:
+          type: string
+      baseCommand: join
       arguments:
          - "-n"
          - "-e"
@@ -109,7 +114,9 @@ steps:
         response:
           type: Any
     in:
-      areacode1: union1/union_res
+      areacode1: 
+        source: union1/union_res
+        valueFrom: ${self.basename}
       areacode2:
         source: rule_table
         valueFrom: ${self.basename}
