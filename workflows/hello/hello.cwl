@@ -15,7 +15,7 @@ outputs:
     type: File
 
 steps:
-  step0:
+   join:
     run:
       class: CommandLineTool
       inputs:
