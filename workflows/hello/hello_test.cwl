@@ -2,8 +2,8 @@
 cwlVersion: v1.0
 class: Workflow
 inputs:
-  tarball: File
-  name_of_file_to_extract: string
+  tarball: 'qqqqq'
+  name_of_file_to_extract: '1111111'
 
 outputs:
   compiled_class:
@@ -12,14 +12,14 @@ outputs:
 
 steps:
   untar:
-    run: tar-param.cwl
+    run: 
     in:
       tarfile: tarball
       extractfile: name_of_file_to_extract
     out: [extracted_file]
 
   compile:
-    run: arguments.cwl
+    run:
     in:
       src: untar/extracted_file
     out: [classfile]
