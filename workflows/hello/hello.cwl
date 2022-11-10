@@ -5,7 +5,9 @@ class: Workflow
 label: "近7天高危地区来宁人员"
 doc: "近7天高危地区来宁人员"
 
-inputs: []
+inputs:
+  tarball: File
+  name_of_file_to_extract: string
 
 outputs:
   response:
