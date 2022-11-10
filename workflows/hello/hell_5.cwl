@@ -49,27 +49,6 @@ steps:
         source: bbb_table
         valueFrom: ${self.basename}
     out: [response]
-  join2:
-    run:
-      class: CommandLineTool
-      inputs:
-        message:
-          type: string
-          doc: "The message to print"
-          default: "Hello World"
-          inputBinding:
-            position: 1
-      baseCommand: echo
-      arguments:
-         - "-n"
-         - "-e"
-      stdout: response.txt
-      outputs:
-        response:
-          type: stdout
-    in:
-      aaa_table: aaa_table
-      ccc_table: ccc_table
-    out: [response]
+
     
     
