@@ -1,21 +1,12 @@
 #!/usr/bin/env cwl-runner
 class: Workflow
 cwlVersion: v1.0
-
+label: "近7天高危地区来宁人员"
+doc: "近7天高危地区来宁人员"
 requirements:
   ScatterFeatureRequirement: {}
   DockerRequirement: 
     dockerPull: debian:8
-
-inputs:
-  pattern: string
-  texts: File[]
-
-outputs:
-  outfile:
-    type: File
-    outputSource: count_matches/counts
-
 steps:
   search_texts:
     run: grep.cwl
