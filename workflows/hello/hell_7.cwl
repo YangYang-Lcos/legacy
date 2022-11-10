@@ -16,7 +16,6 @@ outputs:
     outputSource:
       - join1/response
       - join2/response 
-      
     type: File
 
 steps:
