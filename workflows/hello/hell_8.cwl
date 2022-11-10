@@ -40,7 +40,7 @@ steps:
     
       outputs:
         response:
-          type:Any
+          type: Any
     in:
       name:
         source: aaa_table
@@ -67,7 +67,7 @@ steps:
          - "-e"
       outputs:
         response:
-          type:Any
+          type: Any
     in:
       name:
         source: aaa_table
