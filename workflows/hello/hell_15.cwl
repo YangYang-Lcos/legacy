@@ -26,6 +26,7 @@ outputs:
     type: Any
   unitag_result:
     outputSource: storage/unitag_result
+    type: Any
 
 steps:
   join1:
