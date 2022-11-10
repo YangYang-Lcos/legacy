@@ -21,16 +21,19 @@ outputs:
 
 steps:
   join1:
+    label: "关联操作"
     run:
       class: CommandLineTool
       inputs:
-        message:
+        name:
           type: string
           doc: "The message to print"
           default: "Hello World"
           inputBinding:
             position: 1
-      baseCommand: echo
+        name1:
+          type: string
+      baseCommand: op
       arguments:
          - "-n"
          - "-e"
@@ -39,8 +42,12 @@ steps:
         response:
           type: stdout
     in:
-      aaa_table: aaa_table
-      bbb_table: bbb_table
+      name:
+        source: aaa_table
+        valueFrom: ${self.basename}
+      name2:
+        source: bbb_table
+        valuFrom: ${self.basename}
     out: [response]
   join2:
     run:
