@@ -2,8 +2,8 @@
 cwlVersion: v1.0
 class: Workflow
 
-label: "Hello World"
-doc: "Outputs a message using echo"
+label: "近7天高危地区来宁人员"
+doc: "近7天高危地区来宁人员"
 
 inputs: []
 
