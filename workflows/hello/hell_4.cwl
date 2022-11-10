@@ -13,7 +13,10 @@ inputs:
 
 outputs:
   response:
-    outputSource: response
+    outputSource:
+      - join1/response
+      - join2/response 
+      
     type: File
 
 steps:
